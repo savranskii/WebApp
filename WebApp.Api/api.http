@@ -1,0 +1,43 @@
+@Api_HostAddress = https://localhost:8080
+
+### Get user by ID
+
+Get {{Api_HostAddress}}/api/v1/users/1
+
+### Get all users
+
+Get {{Api_HostAddress}}/api/v1/users
+
+### Create a user
+
+Post {{Api_HostAddress}}/api/v1/users
+Content-Type: application/json
+
+{
+  "email": "test@mail.com",
+  "firstName": "Michael",
+  "lastName": "Myers",
+  "street": "45 Lampkin Lane",
+  "city": "Haddonfield",
+  "country": "USA",
+  "zipCode": "32342"
+}
+
+### Update the user
+
+Put {{Api_HostAddress}}/api/v1/users
+Content-Type: application/json
+
+{
+  "id": 1,
+  "firstName": "Michael",
+  "lastName": "Myers",
+  "street": "45 Lampkin Lane",
+  "city": "Haddonfield",
+  "country": "USA",
+  "zipCode": "66666"
+}
+
+### Delete the user
+
+Delete {{Api_HostAddress}}/api/v1/users/1

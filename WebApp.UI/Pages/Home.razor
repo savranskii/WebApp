@@ -1,0 +1,46 @@
+﻿@page "/"
+@using System.Text.Json
+@using AutoMapper
+@using WebApp.Domain.UserAggregate.Entities
+@using WebApp.UI.Components
+@using WebApp.UI.Models
+@inject HttpClient HttpClient
+@inject IToastService ToastService
+@inject IDialogService DialogService
+
+<PageTitle>Users</PageTitle>
+
+<h1>Users</h1>
+
+<FluentButton IconStart="@(new Icons.Regular.Size16.Add())"
+              Appearance="Appearance.Accent"
+              OnClick="CreateAsync"
+              Style="margin-bottom: 16px;">
+    Add new user
+</FluentButton>
+
+@if (isLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <FluentGrid>
+        <FluentGridItem xs="12">
+            <FluentDataGrid Items="@users" GenerateHeader="GenerateHeaderOption.Sticky">
+                <PropertyColumn Title="ID" Property="@(u => u.Id)" Sortable="true" />
+                <PropertyColumn Property="@(u => u.Email)" Sortable="true" />
+                <TemplateColumn Title="Full Name" SortBy="@sortByName">
+                    @context.Name.LastName @context.Name.FirstName
+                </TemplateColumn>
+                <TemplateColumn Title="Address">
+                    @context.Address.Street, @context.Address.City, @context.Address.Country, @context.Address.ZipCode
+                </TemplateColumn>
+                <TemplateColumn Title="Actions" Align="@Align.End">
+                    <FluentButton IconEnd="@(new Icons.Regular.Size16.Edit())" OnClick="@(async () => await EditAsync(context.Id))" />
+                    <FluentButton IconEnd="@(new Icons.Regular.Size16.Delete())" OnClick="@(async () => await DeleteAsync(context.Id))" />
+                </TemplateColumn>
+            </FluentDataGrid>
+        </FluentGridItem>
+    </FluentGrid>
+}

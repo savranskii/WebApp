@@ -1,0 +1,53 @@
+﻿@using System.Text.Json
+@using System.Text
+@using WebApp.UI.Models
+@inject HttpClient HttpClient
+@inject IToastService ToastService
+@implements IDialogContentComponent<UserDto>
+
+@* Header *@
+<FluentDialogHeader ShowDismiss="true">
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentIcon Value="@(new Icons.Regular.Size24.WindowApps())" />
+        <FluentLabel Typo="Typography.PaneHeader">
+            @Dialog?.Instance.Parameters.Title
+        </FluentLabel>
+    </FluentStack>
+</FluentDialogHeader>
+
+@* Body *@
+<FluentDialogBody>
+    <FluentGrid Spacing="12" Justify="JustifyContent.SpaceBetween" Style="padding: 4px;">
+        <FluentGridItem xs="12">
+            <FluentTextField @bind-Value="@Content.Email" Required="true" Style="width: 100%;">Email:</FluentTextField>
+        </FluentGridItem>
+    </FluentGrid>
+    <FluentGrid Spacing="3" Justify="JustifyContent.SpaceBetween" Style="padding: 4px;">
+        <FluentGridItem xs="6" Justify="JustifyContent.SpaceBetween">
+            <FluentTextField @bind-Value="@Content.FirstName" Required="true" Style="width: 100%;">First Name:</FluentTextField>
+        </FluentGridItem>
+        <FluentGridItem xs="6">
+            <FluentTextField @bind-Value="@Content.LastName" Required="true" Style="width: 100%;">Last Name:</FluentTextField>
+        </FluentGridItem>
+    </FluentGrid>
+    <FluentGrid Spacing="3" Justify="JustifyContent.SpaceBetween" Style="padding: 4px;">
+        <FluentGridItem xs="6" sm="3">
+            <FluentTextField @bind-Value="@Content.Street" Required="true">Street:</FluentTextField>
+        </FluentGridItem>
+        <FluentGridItem xs="6" sm="3">
+            <FluentTextField @bind-Value="@Content.City" Required="true">City:</FluentTextField>
+        </FluentGridItem>
+        <FluentGridItem xs="6" sm="3">
+            <FluentTextField @bind-Value="@Content.Country" Required="true">Country:</FluentTextField>
+        </FluentGridItem>
+        <FluentGridItem xs="6" sm="3">
+            <FluentTextField @bind-Value="@Content.ZipCode" Required="true">Zip Code:</FluentTextField>
+        </FluentGridItem>
+    </FluentGrid>
+</FluentDialogBody>
+
+@* Footer *@
+<FluentDialogFooter>
+    <FluentButton Appearance="Appearance.Accent" OnClick="@SaveAsync">Save</FluentButton>
+    <FluentButton Appearance="Appearance.Neutral" OnClick="@CancelAsync">Cancel</FluentButton>
+</FluentDialogFooter>
