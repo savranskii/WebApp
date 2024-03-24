@@ -1,4 +1,5 @@
 # Web application on .NET 8 and Blazor
+Solution is runnig two project with frontend (Blazor) and backend (ASP.NET Api)
 
 ## Navigate to Infrastructure folder
 cd .\WebApp.Infrastructure
