@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using WebApp.Api.Application.Handlers;
 
-namespace WebApp.Api.Application.Commands;
+namespace WebApp.Api.Application.Validators;
 
-public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
+public class UpdatePlayerCommandValidator : AbstractValidator<UpdatePlayerCommand>
 {
-    public UpdateUserCommandValidator()
+    public UpdatePlayerCommandValidator()
     {
         RuleFor(command => command.Data.Id).NotEmpty();
         RuleFor(command => command.Data.FirstName).NotEmpty().MinimumLength(2).MaximumLength(20);

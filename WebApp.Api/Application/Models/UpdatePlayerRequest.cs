@@ -1,6 +1,6 @@
 ﻿namespace WebApp.Api.Application.Models;
 
-public record UpdateUserRequest(
+public record UpdatePlayerRequest(
     long Id,
     string FirstName,
     string LastName,

@@ -3,9 +3,9 @@ using WebApp.Api.Application.Handlers;
 
 namespace WebApp.Api.Application.Validators;
 
-public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
+public class CreatePlayerCommandValidator : AbstractValidator<CreatePlayerCommand>
 {
-    public CreateUserCommandValidator()
+    public CreatePlayerCommandValidator()
     {
         RuleFor(command => command.Data.Email).NotEmpty().EmailAddress();
         RuleFor(command => command.Data.FirstName).NotEmpty().MinimumLength(2).MaximumLength(20);

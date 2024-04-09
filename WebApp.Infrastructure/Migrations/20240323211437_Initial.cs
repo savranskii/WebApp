@@ -12,7 +12,7 @@ namespace WebApp.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Players",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -29,12 +29,12 @@ namespace WebApp.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Players", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_Email",
-                table: "Users",
+                name: "IX_Players_Email",
+                table: "Players",
                 column: "Email",
                 unique: true);
         }
@@ -43,7 +43,7 @@ namespace WebApp.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Players");
         }
     }
 }

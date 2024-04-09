@@ -1,10 +1,10 @@
-﻿using WebApp.Domain.UserAggregate.ValueObjects;
+﻿using WebApp.Domain.PlayerAggregate.ValueObjects;
 using WebApp.Domain.Seeds;
 using System.Text.Json.Serialization;
 
-namespace WebApp.Domain.UserAggregate.Entities;
+namespace WebApp.Domain.PlayerAggregate.Entities;
 
-public class User : Entity
+public class Player : Entity
 {
     [JsonInclude]
     [JsonPropertyName("id")]
@@ -30,11 +30,11 @@ public class User : Entity
     [JsonPropertyName("updatedAt")]
     public DateTime? UpdatedAt { get; set; }
 
-    public User()
+    public Player()
     {
     }
 
-    public User(string email, FullName name, Address address)
+    public Player(string email, FullName name, Address address)
     {
         Email = email;
         Name = name;

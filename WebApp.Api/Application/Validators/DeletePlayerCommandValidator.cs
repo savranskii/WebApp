@@ -3,9 +3,9 @@ using WebApp.Api.Application.Handlers;
 
 namespace WebApp.Api.Application.Validators;
 
-public class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommand>
+public class DeletePlayerCommandValidator : AbstractValidator<DeletePlayerCommand>
 {
-    public DeleteUserCommandValidator()
+    public DeletePlayerCommandValidator()
     {
         RuleFor(command => command.Id).NotEmpty();
     }

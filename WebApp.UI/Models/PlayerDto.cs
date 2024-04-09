@@ -1,6 +1,6 @@
 ﻿namespace WebApp.UI.Models;
 
-public class UserDto
+public class PlayerDto
 {
     public long? Id { get; set; }
     public string Email { get; set; } = string.Empty;

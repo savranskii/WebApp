@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace WebApp.Domain.UserAggregate.ValueObjects;
+namespace WebApp.Domain.PlayerAggregate.ValueObjects;
 
 public record FullName(
     [property: JsonPropertyName("firstName")] string FirstName,

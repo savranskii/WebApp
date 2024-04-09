@@ -1,6 +1,6 @@
-﻿using WebApp.Domain.UserAggregate.ValueObjects;
+﻿using WebApp.Domain.PlayerAggregate.ValueObjects;
 
-namespace WebApp.Domain.UnitTest.UserAggregate.ValueObjects;
+namespace WebApp.Domain.UnitTest.PlayerAggregate.ValueObjects;
 
 [TestClass]
 public class FullNameTest

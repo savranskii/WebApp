@@ -1,22 +1,22 @@
 ﻿@page "/"
 @using System.Text.Json
 @using AutoMapper
-@using WebApp.Domain.UserAggregate.Entities
+@using WebApp.Domain.PlayerAggregate.Entities
 @using WebApp.UI.Components
 @using WebApp.UI.Models
 @inject HttpClient HttpClient
 @inject IToastService ToastService
 @inject IDialogService DialogService
 
-<PageTitle>Users</PageTitle>
+<PageTitle>Players</PageTitle>
 
-<h1>Users</h1>
+<h1>Players</h1>
 
 <FluentButton IconStart="@(new Icons.Regular.Size16.Add())"
               Appearance="Appearance.Accent"
               OnClick="CreateAsync"
               Style="margin-bottom: 16px;">
-    Add new user
+    Add new player
 </FluentButton>
 
 @if (isLoading)
@@ -27,7 +27,7 @@ else
 {
     <FluentGrid>
         <FluentGridItem xs="12">
-            <FluentDataGrid Items="@users" GenerateHeader="GenerateHeaderOption.Sticky">
+            <FluentDataGrid Items="@players" GenerateHeader="GenerateHeaderOption.Sticky">
                 <PropertyColumn Title="ID" Property="@(u => u.Id)" Sortable="true" />
                 <PropertyColumn Property="@(u => u.Email)" Sortable="true" />
                 <TemplateColumn Title="Full Name" SortBy="@sortByName">

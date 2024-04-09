@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using WebApp.Domain.UserAggregate.Entities;
+using WebApp.Domain.PlayerAggregate.Entities;
 using WebApp.UI.Models;
 
 namespace WebApp.UI;
@@ -8,7 +8,7 @@ public class MapperProfile : Profile
 {
     public MapperProfile()
     {
-        CreateMap<User, UserDto>()
+        CreateMap<Player, PlayerDto>()
             .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.Name.FirstName))
             .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.Name.LastName))
             .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Address.Street))

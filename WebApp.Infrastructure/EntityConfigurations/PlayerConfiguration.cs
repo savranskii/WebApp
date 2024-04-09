@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WebApp.Domain.UserAggregate.Entities;
+using WebApp.Domain.PlayerAggregate.Entities;
 
 namespace WebApp.Infrastructure.EntityConfigurations;
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
+public class PlayerConfiguration : IEntityTypeConfiguration<Player>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<Player> builder)
     {
-        builder.ToTable("Users");
+        builder.ToTable("Players");
 
         builder.HasKey(u => u.Id);
         builder.Property(u => u.Email).IsRequired();

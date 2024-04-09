@@ -22,7 +22,7 @@ namespace WebApp.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WebApp.Domain.UserAggregate.Entities.User", b =>
+            modelBuilder.Entity("WebApp.Domain.PlayerAggregate.Entities.Player", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,14 +51,14 @@ namespace WebApp.Infrastructure.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Players", (string)null);
                 });
 
-            modelBuilder.Entity("WebApp.Domain.UserAggregate.Entities.User", b =>
+            modelBuilder.Entity("WebApp.Domain.PlayerAggregate.Entities.Player", b =>
                 {
-                    b.OwnsOne("WebApp.Domain.UserAggregate.ValueObjects.Address", "Address", b1 =>
+                    b.OwnsOne("WebApp.Domain.PlayerAggregate.ValueObjects.Address", "Address", b1 =>
                         {
-                            b1.Property<long>("UserId")
+                            b1.Property<long>("PlayerId")
                                 .HasColumnType("bigint");
 
                             b1.Property<string>("City")
@@ -85,19 +85,19 @@ namespace WebApp.Infrastructure.Migrations
                                 .HasColumnName("ZipCode")
                                 .HasAnnotation("Relational:JsonPropertyName", "zipCode");
 
-                            b1.HasKey("UserId");
+                            b1.HasKey("PlayerId");
 
-                            b1.ToTable("Users");
+                            b1.ToTable("Players");
 
                             b1.HasAnnotation("Relational:JsonPropertyName", "address");
 
                             b1.WithOwner()
-                                .HasForeignKey("UserId");
+                                .HasForeignKey("PlayerId");
                         });
 
-                    b.OwnsOne("WebApp.Domain.UserAggregate.ValueObjects.FullName", "Name", b1 =>
+                    b.OwnsOne("WebApp.Domain.PlayerAggregate.ValueObjects.FullName", "Name", b1 =>
                         {
-                            b1.Property<long>("UserId")
+                            b1.Property<long>("PlayerId")
                                 .HasColumnType("bigint");
 
                             b1.Property<string>("FirstName")
@@ -112,14 +112,14 @@ namespace WebApp.Infrastructure.Migrations
                                 .HasColumnName("LastName")
                                 .HasAnnotation("Relational:JsonPropertyName", "lastName");
 
-                            b1.HasKey("UserId");
+                            b1.HasKey("PlayerId");
 
-                            b1.ToTable("Users");
+                            b1.ToTable("Players");
 
                             b1.HasAnnotation("Relational:JsonPropertyName", "name");
 
                             b1.WithOwner()
-                                .HasForeignKey("UserId");
+                                .HasForeignKey("PlayerId");
                         });
 
                     b.Navigation("Address")

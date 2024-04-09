@@ -1,16 +1,16 @@
 @Api_HostAddress = https://localhost:8080
 
-### Get user by ID
+### Get player by ID
 
-Get {{Api_HostAddress}}/api/v1/users/1
+Get {{Api_HostAddress}}/api/v1/players/1
 
-### Get all users
+### Get all players
 
-Get {{Api_HostAddress}}/api/v1/users
+Get {{Api_HostAddress}}/api/v1/players
 
-### Create a user
+### Create a player
 
-Post {{Api_HostAddress}}/api/v1/users
+Post {{Api_HostAddress}}/api/v1/players
 Content-Type: application/json
 
 {
@@ -23,9 +23,9 @@ Content-Type: application/json
   "zipCode": "32342"
 }
 
-### Update the user
+### Update the player
 
-Put {{Api_HostAddress}}/api/v1/users
+Put {{Api_HostAddress}}/api/v1/players
 Content-Type: application/json
 
 {
@@ -38,6 +38,6 @@ Content-Type: application/json
   "zipCode": "66666"
 }
 
-### Delete the user
+### Delete the player
 
-Delete {{Api_HostAddress}}/api/v1/users/1
+Delete {{Api_HostAddress}}/api/v1/players/1

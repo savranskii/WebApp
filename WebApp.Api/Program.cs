@@ -2,7 +2,7 @@
 using WebApp.Api.Extensions;
 using WebApp.Infrastructure.Contexts;
 
-const string UICors = "_UI";
+const string uiCors = "_UI";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +15,7 @@ builder.Services.ConfigureDependencies(builder.Configuration);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: UICors, policy =>
+    options.AddPolicy(name: uiCors, policy =>
     {
         policy.WithOrigins("https://localhost:7240", "http://localhost:8080")
             .AllowAnyHeader()
@@ -42,13 +42,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(UICors);
+app.UseCors(uiCors);
 
 app.UseExceptionHandler(opt => { });
 
 app.UseRateLimiter();
 
-app.MapUsersEndpoints();
+app.MapPlayersEndpoints();
 
 app.Run();
 

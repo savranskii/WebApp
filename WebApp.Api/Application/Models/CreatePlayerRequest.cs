@@ -1,6 +1,6 @@
 ﻿namespace WebApp.Api.Application.Models;
 
-public record CreateUserRequest(
+public record CreatePlayerRequest(
     string Email,
     string FirstName,
     string LastName,

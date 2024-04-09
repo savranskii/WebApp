@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApp.Api.Application.Constants;
-using WebApp.Domain.UserAggregate.Repositories;
+using WebApp.Domain.PlayerAggregate.Repositories;
 using WebApp.Infrastructure.Contexts;
 using WebApp.Infrastructure.Models.Options;
 using WebApp.Infrastructure.Repositories;
@@ -15,6 +15,6 @@ public static class DependencyConfiguration
         configuration.GetSection(OptionsKey.Connection).Bind(connectionOptions);
 
         services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connectionOptions.SqlServer));
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IPlayerRepository, PlayerRepository>();
     }
 }

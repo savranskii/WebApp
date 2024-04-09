@@ -6,10 +6,10 @@ using WebApp.UI.Models;
 
 namespace WebApp.UI.Components;
 
-public partial class UserDialog
+public partial class PlayerDialog
 {
     [Parameter]
-    public UserDto Content { get; set; } = default!;
+    public PlayerDto Content { get; set; } = default!;
 
     [CascadingParameter]
     public FluentDialog? Dialog { get; set; }
@@ -20,12 +20,12 @@ public partial class UserDialog
         {
             var content = new StringContent(JsonSerializer.Serialize(Content), Encoding.UTF8, "application/json");
             var isSuccess = Content.Id is null
-                ? await CreateUserAsync(content)
-                : await UpdateUserAsync(content);
+                ? await CreatePlayerAsync(content)
+                : await UpdatePlayerAsync(content);
 
             if (isSuccess)
             {
-                ToastService.ShowSuccess("User saved.");
+                ToastService.ShowSuccess("Player saved.");
                 await Dialog!.CloseAsync(Content);
             }
             else ToastService.ShowError($"Error occured.");
@@ -36,15 +36,15 @@ public partial class UserDialog
         }
     }
 
-    private async Task<bool> CreateUserAsync(StringContent content)
+    private async Task<bool> CreatePlayerAsync(StringContent content)
     {
-        using var response = await HttpClient.PostAsync("/api/v1/users", content);
+        using var response = await HttpClient.PostAsync("/api/v1/players", content);
         return response.IsSuccessStatusCode;
     }
 
-    private async Task<bool> UpdateUserAsync(StringContent content)
+    private async Task<bool> UpdatePlayerAsync(StringContent content)
     {
-        using var response = await HttpClient.PutAsync("/api/v1/users", content);
+        using var response = await HttpClient.PutAsync("/api/v1/players", content);
         return response.IsSuccessStatusCode;
     }
 

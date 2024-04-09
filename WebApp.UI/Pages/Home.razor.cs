@@ -2,7 +2,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
-using WebApp.Domain.UserAggregate.Entities;
+using WebApp.Domain.PlayerAggregate.Entities;
 using WebApp.UI.Components;
 using WebApp.UI.Models;
 
@@ -13,8 +13,8 @@ public partial class Home
     protected IMapper Mapper { get; set; } = default!;
 
     private bool isLoading = true;
-    private IQueryable<User> users = new List<User>().AsQueryable();
-    private readonly GridSort<User> sortByName = GridSort<User>.ByAscending(p => p.Name.LastName).ThenAscending(p => p.Name.FirstName);
+    private IQueryable<Player> players = new List<Player>().AsQueryable();
+    private readonly GridSort<Player> sortByName = GridSort<Player>.ByAscending(p => p.Name.LastName).ThenAscending(p => p.Name.FirstName);
 
     protected override async Task OnInitializedAsync()
     {
@@ -25,11 +25,11 @@ public partial class Home
     {
         try
         {
-            using var response = await HttpClient.GetAsync("/api/v1/users");
+            using var response = await HttpClient.GetAsync("/api/v1/players");
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                users = (JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>()).AsQueryable();
+                players = (JsonSerializer.Deserialize<List<Player>>(json) ?? new List<Player>()).AsQueryable();
                 isLoading = false;
             }
             else ToastService.ShowError("Error occured.");
@@ -42,9 +42,9 @@ public partial class Home
 
     private async Task CreateAsync()
     {
-        var dialog = await DialogService.ShowDialogAsync<UserDialog>(
-            new UserDto(),
-            GetDialogParamiters("Create new user"));
+        var dialog = await DialogService.ShowDialogAsync<PlayerDialog>(
+            new PlayerDto(),
+            GetDialogParamiters("Create new player"));
 
         var result = await dialog.Result;
         if (result is not null)
@@ -53,10 +53,10 @@ public partial class Home
 
     private async Task EditAsync(long id)
     {
-        var user = users.Single(u => u.Id == id);
-        var dialog = await DialogService.ShowDialogAsync<UserDialog>(
-            Mapper.Map<UserDto>(user),
-            GetDialogParamiters($"Updating the user {user?.Id}"));
+        var player = players.Single(u => u.Id == id);
+        var dialog = await DialogService.ShowDialogAsync<PlayerDialog>(
+            Mapper.Map<PlayerDto>(player),
+            GetDialogParamiters($"Updating the player {player?.Id}"));
 
         var result = await dialog.Result;
         if (result is not null)
@@ -67,10 +67,10 @@ public partial class Home
     {
         try
         {
-            using var response = await HttpClient.DeleteAsync($"/api/v1/users/{id}");
+            using var response = await HttpClient.DeleteAsync($"/api/v1/players/{id}");
             if (response.IsSuccessStatusCode)
             {
-                users = users.Where(u => u.Id != id);
+                players = players.Where(u => u.Id != id);
             }
             else ToastService.ShowError("Error occured.");
         }
