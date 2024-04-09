@@ -1,6 +1,6 @@
-﻿using WebApp.Domain.PlayerAggregate.ValueObjects;
+﻿using System.Text.Json.Serialization;
+using WebApp.Domain.PlayerAggregate.ValueObjects;
 using WebApp.Domain.Seeds;
-using System.Text.Json.Serialization;
 
 namespace WebApp.Domain.PlayerAggregate.Entities;
 
