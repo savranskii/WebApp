@@ -6,11 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Infrastructure\Migrations\**" />
     <Content Remove="Infrastructure\Migrations\**" />
+    <Content Include="..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
     <EmbeddedResource Remove="Infrastructure\Migrations\**" />
     <None Remove="Infrastructure\Migrations\**" />
   </ItemGroup>

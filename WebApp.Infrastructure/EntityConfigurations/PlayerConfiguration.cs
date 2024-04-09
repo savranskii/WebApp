@@ -25,6 +25,6 @@ public class PlayerConfiguration : IEntityTypeConfiguration<Player>
             navigation.Property(a => a.Country).IsRequired().HasColumnName("Country");
             navigation.Property(a => a.ZipCode).IsRequired().HasColumnName("ZipCode");
         });
-        builder.Property(u => u.CreatedAt).HasDefaultValueSql("GETDATE()");
+        builder.Property(u => u.CreatedAt).HasDefaultValueSql("now()");
     }
 }

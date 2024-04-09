@@ -1,0 +1,17 @@
+﻿services:
+  webapp.api:
+    image: webapp.api
+    container_name: web_app
+    build:
+      context: .
+      dockerfile: WebApp.Api/Dockerfile
+    ports:
+      - 8080:8080
+      - 8081:8081
+  db:
+    image: postgres
+    container_name: pg_sql
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: 123456

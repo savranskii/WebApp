@@ -2,5 +2,5 @@
 
 public class ConnectionOptions
 {
-    public string SqlServer { get; set; } = string.Empty;
+    public string PostgresSqlServer { get; set; } = string.Empty;
 }

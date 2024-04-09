@@ -14,7 +14,7 @@ public static class DependencyConfiguration
         var connectionOptions = new ConnectionOptions();
         configuration.GetSection(OptionsKey.Connection).Bind(connectionOptions);
 
-        services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connectionOptions.SqlServer));
+        services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(connectionOptions.PostgresSqlServer));
         services.AddScoped<IPlayerRepository, PlayerRepository>();
     }
 }
