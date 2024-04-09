@@ -2,8 +2,6 @@
 using WebApp.Api.Extensions;
 using WebApp.Infrastructure.Contexts;
 
-const string uiCors = "_UI";
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,16 +10,7 @@ builder.Services.ConfigureOptions();
 builder.Services.ConfigureRateLimit(builder.Configuration);
 builder.Services.ConfigureExceptionHandler();
 builder.Services.ConfigureDependencies(builder.Configuration);
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: uiCors, policy =>
-    {
-        policy.WithOrigins("https://localhost:7240", "http://localhost:8080")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-});
+builder.Services.ConfigureCors(builder.Configuration);
 
 builder.Services.AddMediatR(options => options.RegisterServicesFromAssemblyContaining<Program>());
 builder.Services.AddEndpointsApiExplorer();
@@ -42,7 +31,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(uiCors);
+app.UseCors(CorsConfiguration.UiCors);
 
 app.UseExceptionHandler(opt => { });
 

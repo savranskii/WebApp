@@ -1,6 +1,4 @@
 ﻿using System.Text.Json;
-using AutoMapper;
-using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
 using WebApp.Domain.PlayerAggregate.Entities;
 using WebApp.UI.Components;
@@ -9,9 +7,6 @@ using WebApp.UI.Models;
 namespace WebApp.UI.Pages;
 public partial class Home
 {
-    [Inject]
-    protected IMapper Mapper { get; set; } = default!;
-
     private bool isLoading = true;
     private IQueryable<Player> players = new List<Player>().AsQueryable();
     private readonly GridSort<Player> sortByName = GridSort<Player>.ByAscending(p => p.Name.LastName).ThenAscending(p => p.Name.FirstName);
@@ -54,9 +49,17 @@ public partial class Home
     private async Task EditAsync(long id)
     {
         var player = players.Single(u => u.Id == id);
-        var dialog = await DialogService.ShowDialogAsync<PlayerDialog>(
-            Mapper.Map<PlayerDto>(player),
-            GetDialogParamiters($"Updating the player {player?.Id}"));
+        var dialog = await DialogService.ShowDialogAsync<PlayerDialog>(new PlayerDto
+        {
+            Id = player.Id,
+            Email = player.Email,
+            FirstName = player.Name.FirstName,
+            LastName = player.Name.LastName,
+            Street = player.Address.Street,
+            City = player.Address.City,
+            Country = player.Address.Country,
+            ZipCode = player.Address.ZipCode
+        }, GetDialogParamiters($"Updating the player {player?.Id}"));
 
         var result = await dialog.Result;
         if (result is not null)

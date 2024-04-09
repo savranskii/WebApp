@@ -1,12 +1,18 @@
 ﻿services:
+  webapp.ui:
+    image: webapp.ui
+    container_name: web_ui
+    build:
+      context: .
+      dockerfile: WebApp.UI/Dockerfile
+    ports:
+      - 80:80
   webapp.api:
     image: webapp.api
     container_name: web_app
     build:
       context: .
       dockerfile: WebApp.Api/Dockerfile
-    ports:
-      - 8080:8080
   db:
     image: postgres
     container_name: pg_sql
